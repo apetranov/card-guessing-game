@@ -38,7 +38,7 @@ function Cards() {
   return (
     <div className='cards-grid'>
         {cards.map(card => (
-            <div className='card' key={card.id}>{card.emoji}</div>
+            <div className='card' key={card.id}>{card.flipped && card.emoji}</div>
         ))}
     </div>
   )

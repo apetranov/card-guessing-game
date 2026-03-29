@@ -14,11 +14,27 @@
   background-color: blue;
   padding: 20px;
   border-radius: 10px;
+  height: 70px;
+  width: 100px;
+}
+
+
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  height: 100vh;
 }
 
 @media (max-width: 700px) {
   .cards-grid {
     grid-template-columns: 150px 150px;
+  }
+
+  .main-div {
+    height: 100vh;
   }
 }
 
@@ -26,11 +42,8 @@
   .cards-grid {
     grid-template-columns: 150px;
   }
-}
 
-.main-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  .main-div {
+    height: auto;
+  }
 }
