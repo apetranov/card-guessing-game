@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import React from 'react'
 import { useState, useEffect } from 'react';
 import './App.css'
 
@@ -6,7 +6,6 @@ function Cards() {
     const [firstFlippedCard, setFirstFlippedCard] = useState();
     const [secondFlippedCard, setSecondFlippedCard] = useState();
     const [flippedCards, setFlippedCards] = useState([]);
-    const [flippedCardsIndex, setFlippedCardsIndex] = useState(0);
     const [cards, setCards] = useState([
     {
         id: 1,
@@ -38,26 +37,8 @@ function Cards() {
         emoji: '💰',
         flipped: false
     },
-]);
+])
 
-    // function handleFlip(toFlipId) {
-    //     const cardsCopy = [...cards];
-    //     const flippedCardsCopy = [...flippedCards];
-
-
-    // }
-
-    
-
-    // function handleFlip() {
-        
-    //     if (firstFlippedCard && secondFlippedCard && firstFlippedCard.emoji === secondFlippedCard.emoji) {
-    //         console.log("Cards match!", firstFlippedCard, secondFlippedCard);
-    //     }
-    //     else {
-    //         console.log('Two cards are not flipped atm');
-    //     }
-    // }
 
     function isFlippedCard(id) {
         for (let i = 0; i < flippedCards.length; i++) {
@@ -72,7 +53,7 @@ function Cards() {
         if (firstFlippedCard && secondFlippedCard && firstFlippedCard.emoji === secondFlippedCard.emoji 
             && firstFlippedCard.id !== secondFlippedCard.id
         ) {
-            console.log("Cards match!", firstFlippedCard, secondFlippedCard);
+            // console.log("Cards match!", firstFlippedCard, secondFlippedCard);
 
             const copyArr = [...flippedCards];
 
@@ -99,27 +80,34 @@ function Cards() {
                 copyArr.push(secondFlippedCard);
             }
 
-            console.log("Flipped cards arr: ", copyArr);
+            // console.log("Flipped cards arr: ", copyArr);
 
             setFlippedCards(copyArr);
             setFirstFlippedCard();
             setSecondFlippedCard();
 
         } else if (firstFlippedCard && secondFlippedCard && firstFlippedCard.emoji !== secondFlippedCard.emoji) {
-            console.log("Cards don't match!", firstFlippedCard, secondFlippedCard);
-            setFirstFlippedCard();
-            setSecondFlippedCard();
+            // console.log("Cards don't match!", firstFlippedCard, secondFlippedCard);
+            setTimeout(() => {
+                setFirstFlippedCard();
+                setSecondFlippedCard();
+            }, 1000)
+            
             
         } else if (firstFlippedCard && secondFlippedCard && firstFlippedCard.id === secondFlippedCard.id) {
-            console.log("Cannot select same card twice!");
+           // console.log("Cannot select same card twice!");
             setFirstFlippedCard();
             setSecondFlippedCard();
         } else {
-            console.log('Two cards are not flipped atm');
+           // console.log('Two cards are not flipped atm');
         }
     }, [firstFlippedCard, secondFlippedCard])
 
-
+    function shuffleCards() {
+        const cardsCopy = [...cards];
+        cardsCopy.sort(() => Math.random() - 0.5);
+        setCards(cardsCopy);
+    }
 
   return (
     <div className='cards-grid'>
@@ -132,7 +120,7 @@ function Cards() {
                     // handleFlip(card.id);
                     let cardCopy = { ...card };;
                     if (!firstFlippedCard) {
-                        console.log(card.id);
+                        // console.log(card.id);
                         // card.flipped = true;
                         cardCopy.flipped = true;
                         setFirstFlippedCard(cardCopy);
@@ -148,10 +136,19 @@ function Cards() {
                 {
                     isFlippedCard(card.id) ? card.emoji 
                     : firstFlippedCard && firstFlippedCard.id === card.id 
+                    || secondFlippedCard && secondFlippedCard.id === card.id
                     ? card.emoji : ''
                 }
             </div>
         ))}
+
+        {flippedCards.length === cards.length && <button
+            onClick={() => {
+                shuffleCards();
+                setFlippedCards([]);
+            }}
+            className='play-again-button'
+        >Play again</button>}
     </div>
   )
 }
