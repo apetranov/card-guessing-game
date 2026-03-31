@@ -1,16 +1,16 @@
-# React + Vite
+# 🎮 Card guessing game
+A card guessing/matching game built with React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ⚙️ Technologies
+- React
+- CSS
+- JavaScript
 
-Currently, two official plugins are available:
+# 🤔 How it works
+- User clicks on a card
+- Card gets revealed
+- User clicks another card which also gets revealed
+- If the two cards match the remain revealed
+- If they don't match they both get flipped to their original state
+- When all the cards have been matched the user can click the play again button (this reshuffles the cards and restarts the game)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
