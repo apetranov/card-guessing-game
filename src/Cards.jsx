@@ -109,6 +109,10 @@ function Cards() {
         setCards(cardsCopy);
     }
 
+    useEffect(() => {
+        shuffleCards();
+    }, []);
+
   return (
     <div className='cards-grid'>
         {cards.map((card) => (
